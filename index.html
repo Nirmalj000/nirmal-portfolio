@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nirmal's Portfolio</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --primary-color: #6a5acd;
+            --secondary-color: #ff6f61;
+            --background-color: #f8f9fa;
+            --text-color: #333;
+            --shadow-color: rgba(0, 0, 0, 0.1);
+            --transition-speed: 0.4s;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        /* Navbar */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            background: #fff;
+            box-shadow: 0 4px 8px var(--shadow-color);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav .logo {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        nav .menu {
+            display: flex;
+            gap: 1rem;
+        }
+
+        nav .menu a {
+            text-decoration: none;
+            font-weight: 500;
+            color: var(--text-color);
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: background-color var(--transition-speed), color var(--transition-speed);
+        }
+
+        nav .menu a:hover {
+            background-color: var(--primary-color);
+            color: #fff;
+        }
+
+        /* Hamburger Menu Icon */
+        nav .hamburger {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-color);
+        }
+
+        /* Hidden Menu for Small Screens */
+        .menu.collapsed {
+            display: none;
+            flex-direction: column;
+            gap: 1rem;
+            background: #fff;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            width: 100%;
+            box-shadow: 0 4px 8px var(--shadow-color);
+            padding: 1rem 0;
+        }
+
+        .menu.collapsed a {
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            .menu {
+                display: none; /* Hide the menu by default */
+                flex-direction: column;
+            }
+
+            .hamburger {
+                display: block; /* Show hamburger icon on small screens */
+            }
+
+            .menu.active {
+                display: flex; /* Show menu when active class is added */
+            }
+        }
+
+        /* Hero Section */
+        #home {
+            height: 60vh; /* Smaller height */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 1rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: #fff;
+        }
+
+        #home h1 {
+            font-size: 2.5rem; /* Smaller font */
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        #home p {
+            font-size: 1rem;
+            max-width: 500px;
+            margin-bottom: 1.5rem;
+        }
+
+        #home .btn {
+            padding: 0.8rem 1.5rem;
+            background-color: #fff;
+            color: var(--primary-color);
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: transform var(--transition-speed);
+        }
+
+        #home .btn:hover {
+            transform: scale(1.1);
+        }
+
+        /* Projects Section */
+        #projects {
+            padding: 3rem 1rem;
+            text-align: center;
+            background: #fff;
+        }
+
+        #projects h2 {
+            font-size: 2rem; /* Smaller font size */
+            color: var(--secondary-color);
+            margin-bottom: 1.5rem;
+        }
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); /* Two cards per row */
+            gap: 3.5rem;
+            max-width: 800px; /* Smaller width */
+            margin: 0 auto;
+        }
+
+        .project-card {
+            background: #f8f9fa;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px var(--shadow-color);
+            overflow: hidden;
+            transition: transform var(--transition-speed);
+        }
+
+        .project-card:hover {
+            transform: scale(1.05);
+        }
+
+        .project-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: scale-down; /* Ensures the images fit without distortion */
+        }
+
+        .project-card .content {
+            padding: 1rem;
+        }
+
+        .project-card .content h3 {
+            font-size: 1.4rem;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .project-card .content p {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .project-card .btns {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 1rem;
+        }
+
+        .btn {
+            padding: 0.5rem 1rem;
+            text-decoration: none;
+            border-radius: 5px;
+            background: var(--secondary-color);
+            color: #fff;
+            font-weight: 600;
+            transition: background var(--transition-speed);
+        }
+
+        .btn:hover {
+            background: var(--primary-color);
+        }
+
+        /* Support Section */
+        #support {
+            padding: 3rem 1rem;
+            text-align: center;
+            background: var(--background-color);
+            color: var(--text-color);
+        }
+
+        #support h2 {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        #support p {
+            font-size: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 1rem;
+            background: var(--primary-color);
+            color: #fff;
+            margin-top: 2rem;
+        }
+
+        footer p {
+            font-size: 0.9rem;
+        }
+
+        footer .socials a {
+            margin: 0 0.5rem;
+            font-size: 1.2rem;
+            color: #fff;
+            transition: color var(--transition-speed);
+        }
+
+        footer .socials a:hover {
+            color: var(--secondary-color);
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                gap: 0.5rem; /* Reduces gap for mobile view */
+            }
+
+            .project-grid {
+                grid-template-columns: 1fr; /* One card per row for smaller screens */
+            }
+
+            .project-card img {
+                height: 150px; /* Adjusted height for smaller screens */
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav>
+        <div class="logo">Nirmal's Portfolio</div>
+        <div class="hamburger" id="hamburger">
+            <i class="fas fa-bars"></i>
+        </div>
+        <ul class="menu" id="menu">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#support">Support</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home">
+        <h1>Welcome to my Portfolio</h1>
+        <p>I am in a journey towards building a open source softwares, which are only built upon client side, which means No servers side interactions are required, which means the data whichever you upload stays with you!</p>
+        <a href="#projects" class="btn">Explore Projects</a>
+    </section>
+    
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <h2>My Projects</h2>
+        <div class="project-grid">
+            <div class="project-card">
+                <img src="logo-pdf-merger.png" alt="PDF Merger">
+                <div class="content">
+                    <h3>PDF Merger</h3>
+                    <p>Merge multiple PDFs into one.</p>
+                    <div class="btns">
+                        <a href="https://nirmalj000.github.io/pdf-merger/" class="btn">View</a>
+                        <a href="https://github.com/Nirmalj000/pdf-merger" class="btn">GitHub</a>
+                    </div>
+                </div>
+            </div>
+            <div class="project-card">
+                <img src="image-2-pdf.png" alt="Image to PDF">
+                <div class="content">
+                    <h3>Image to PDF</h3>
+                    <p>Convert images to pdf</p>
+                    <div class="btns">
+                        <a href="https://nirmalj000.github.io/image2pdf/" class="btn">View</a>
+                        <a href="https://github.com/Nirmalj000/image2pdf" class="btn">GitHub</a>
+                    </div>
+                </div>
+            </div>
+            <div class="project-card">
+                <img src="image-compressor.png" alt="Image Compressor">
+                <div class="content">
+                    <h3>Image Compressor</h3>
+                    <p>Compress images by adjusting quality</p>
+                    <div class="btns">
+                        <a href="https://nirmalj000.github.io/image-compress/" class="btn">View</a>
+                        <a href="https://github.com/Nirmalj000/image-compress" class="btn">GitHub</a>
+                    </div>
+                </div>
+            </div>
+            <div class="project-card">
+                <img src="mp3Merger-logo.png" alt="MP3-Merger">
+                <div class="content">
+                    <h3>MP3 merger</h3>
+                    <p>A brief description of this amazing project.</p>
+                    <div class="btns">
+                        <a href="https://nirmalj000.github.io/audio-merger/" class="btn">View</a>
+                        <a href="https://github.com/Nirmalj000/audio-merger" class="btn">GitHub</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Support Section -->
+    <section id="support">
+        <h2>Support My Work</h2>
+        <p>If you enjoy my work, consider buying me a coffee!</p>
+        <div id="bmc-widget">
+            <script type="text/javascript" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" 
+                    data-name="bmc-button" data-slug="nirmaljain" data-color="#FFDD00" data-emoji="" 
+                    data-font="Cookie" data-text="Buy me a coffee" data-outline-color="#000000" 
+                    data-font-color="#000000" data-coffee-color="#ffffff"></script>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2024 Your Name. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // JavaScript for toggling the menu
+        const hamburger = document.getElementById('hamburger');
+        const menu = document.getElementById('menu');
+
+        hamburger.addEventListener('click', () => {
+            menu.classList.toggle('active'); // Toggles the "active" class
+        });
+    </script>
+</body>
+</html>
