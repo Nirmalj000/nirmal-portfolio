@@ -4,15 +4,13 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Nirmal's Portfolio</title>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
     <style>
+      * {
+        box-sizing: border-box;
+      }
+
       body {
         margin: 0;
         font-family: 'Fira Code', monospace;
@@ -22,26 +20,38 @@
         flex-direction: column;
         align-items: center;
         padding: 2rem;
+        overflow-x: hidden;
+      }
+
+      #tech-bg {
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: -1;
+        width: 100vw;
+        height: 100vh;
+        background: #0d1117;
       }
 
       nav {
         background-color: #161b22;
         border: 1px solid #30363d;
-        border-radius: 10px;
-        padding: 0.75rem 1.5rem;
+        border-radius: 12px;
+        padding: 0.75rem 2rem;
         display: flex;
         gap: 2rem;
         margin-bottom: 2rem;
         animation: fadeIn 1s ease-in-out;
-        box-shadow: 0 0 10px #1f6feb55;
+        box-shadow: 0 0 12px #1f6feb55;
+        font-size: 0.95rem;
       }
 
       nav a {
         text-decoration: none;
         color: #c9d1d9;
         font-weight: bold;
-        transition: all 0.3s;
         position: relative;
+        transition: all 0.3s ease;
       }
 
       nav a::after {
@@ -72,7 +82,7 @@
 
       header h1 {
         color: #58a6ff;
-        font-size: 2rem;
+        font-size: 2.2rem;
         margin-bottom: 0.5rem;
       }
 
@@ -82,26 +92,33 @@
         color: #8b949e;
       }
 
+      .auto-type {
+        color: #8b949e;
+        font-size: 1.1rem;
+        margin-top: 1rem;
+        min-height: 1.4rem;
+      }
+
       .projects {
         max-width: 800px;
         width: 100%;
       }
 
       .project {
-  background: #161b22;
-  border: 1px solid #30363d;
-  padding: 1.5rem;
-  border-radius: 12px;
-  margin-bottom: 1.5rem;
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-  cursor: pointer;
-  position: relative;
-}
+        background: #161b22;
+        border: 1px solid #30363d;
+        padding: 1.5rem;
+        border-radius: 12px;
+        margin-bottom: 1.5rem;
+        transition: transform 0.25s ease, box-shadow 0.25s ease;
+        cursor: pointer;
+        position: relative;
+      }
 
-.project:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 20px rgba(88, 166, 255, 0.2);
-}
+      .project:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 8px 20px rgba(88, 166, 255, 0.2);
+      }
 
       .project h2 {
         margin: 0 0 0.5rem;
@@ -114,38 +131,32 @@
       }
 
       .links {
-  margin-top: 1rem;
-  display: flex;
-  gap: 1rem;
-}
+        margin-top: 1rem;
+        display: flex;
+        gap: 1rem;
+      }
 
-.links a {
-  background-color: #21262d;
-  color: #58a6ff;
-  padding: 0.5rem 1.2rem;
-  border: 1px solid #30363d;
-  border-radius: 8px;
-  text-decoration: none;
-  font-weight: 600;
-  font-size: 0.9rem;
-  transition: all 0.3s ease;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-}
+      .links a {
+        background-color: #21262d;
+        color: #58a6ff;
+        padding: 0.5rem 1.2rem;
+        border: 1px solid #30363d;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 0.9rem;
+        transition: all 0.3s ease;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+      }
 
-.links a:hover {
-  background-color: #2b3137;
-  color: #ffffff;
-  transform: scale(1.05);
-  border-color: #58a6ff;
-}
-.auto-type {
-  color: #8b949e;
-  font-size: 1.1rem;
-  margin-top: 1rem;
-  min-height: 1.4rem;
-}
+      .links a:hover {
+        background-color: #2b3137;
+        color: #ffffff;
+        transform: scale(1.05);
+        border-color: #58a6ff;
+      }
 
       .support {
         margin-top: 3rem;
@@ -208,11 +219,11 @@
           transform: translateY(0);
         }
       }
-
-
     </style>
   </head>
   <body>
+    <canvas id="tech-bg"></canvas>
+
     <nav>
       <a href="#home">Home</a>
       <a href="#projects">Projects</a>
@@ -222,11 +233,8 @@
 
     <header id="home">
       <h1>Hi, I'm Nirmal 👋</h1>
-      <p>
-        I'm on a mission to build open-source, fully client-side tools — no servers,
-        no data collection. Everything stays in your hands.
-      </p>
-      <div class="auto-type" id="autoType"></div>
+      <p>I'm on a mission to build open-source, fully client-side tools — no servers, no data collection. Everything stays in your hands.</p>
+      <div class="auto-type" id="autoType">~</div>
     </header>
 
     <section id="projects" class="projects">
@@ -267,19 +275,15 @@
     <div class="support" id="support">
       <h3>Support My Work</h3>
       <p>If you enjoy my work, consider buying me a coffee!</p>
-      <script
-        type="text/javascript"
-        src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js"
+      <script type="text/javascript" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js"
         data-name="bmc-button"
         data-slug="nirmaljain"
         data-color="#FFDD00"
-        data-emoji=""
         data-font="Cookie"
         data-text="Buy me a coffee"
-        data-outline-color="#000000"
         data-font-color="#000000"
-        data-coffee-color="#ffffff"
-      ></script>
+        data-coffee-color="#ffffff">
+      </script>
     </div>
 
     <div class="contact" id="contact">
@@ -297,45 +301,107 @@
     </footer>
 
     <script>
+      // Auto typing
       const autoText = [
-  "JavaScript enthusiast 💻",
-  "Privacy-first coder 🔐",
-  "Open-source contributor 🌍",
-  "Lover of clean UIs ✨"
-];
+        "JavaScript enthusiast 💻",
+        "Privacy-first coder 🔐",
+        "Open-source contributor 🌍",
+        "Lover of clean UIs ✨"
+      ];
 
-let typeIndex = 0;
-let charIndex = 0;
-const target = document.getElementById("autoType");
+      let typeIndex = 0;
+      let charIndex = 0;
+      const target = document.getElementById("autoType");
 
-function typeWriter() {
-  if (autoText.length === 0) {
-    target.textContent = "Exploring the web...";
-    return;
-  }
+      function typeWriter() {
+        if (autoText.length === 0) {
+          target.textContent = "Exploring the web...";
+          return;
+        }
 
-  if (charIndex < autoText[typeIndex].length) {
-    target.textContent += autoText[typeIndex].charAt(charIndex);
-    charIndex++;
-    setTimeout(typeWriter, 75);
-  } else {
-    setTimeout(() => {
-      target.textContent = "";
-      charIndex = 0;
-      typeIndex = (typeIndex + 1) % autoText.length;
-      setTimeout(typeWriter, 300);
-    }, 2000);
-  }
-}
+        if (charIndex < autoText[typeIndex].length) {
+          target.textContent += autoText[typeIndex].charAt(charIndex);
+          charIndex++;
+          setTimeout(typeWriter, 75);
+        } else {
+          setTimeout(() => {
+            target.textContent = "";
+            charIndex = 0;
+            typeIndex = (typeIndex + 1) % autoText.length;
+            setTimeout(typeWriter, 300);
+          }, 2000);
+        }
+      }
 
-window.onload = () => {
-  if (autoText.length === 0) {
-    target.textContent = "Exploring the web...";
-  } else {
-    typeWriter();
-  }
-};
+      window.onload = () => {
+        if (autoText.length === 0) {
+          target.textContent = "Exploring the web...";
+        } else {
+          typeWriter();
+        }
+      };
 
+      // Techy background
+      const canvas = document.getElementById("tech-bg");
+      const ctx = canvas.getContext("2d");
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+
+      const dots = [];
+      const dotCount = 100;
+
+      for (let i = 0; i < dotCount; i++) {
+        dots.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          vx: (Math.random() - 0.5) * 0.3,
+          vy: (Math.random() - 0.5) * 0.3,
+          radius: Math.random() * 1.5 + 0.5
+        });
+      }
+
+      function draw() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.fillStyle = "#58a6ff55";
+
+        for (let i = 0; i < dotCount; i++) {
+          const d = dots[i];
+          d.x += d.vx;
+          d.y += d.vy;
+
+          if (d.x < 0 || d.x > canvas.width) d.vx *= -1;
+          if (d.y < 0 || d.y > canvas.height) d.vy *= -1;
+
+          ctx.beginPath();
+          ctx.arc(d.x, d.y, d.radius, 0, Math.PI * 2);
+          ctx.fill();
+
+          for (let j = i + 1; j < dotCount; j++) {
+            const d2 = dots[j];
+            const dx = d.x - d2.x;
+            const dy = d.y - d2.y;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+
+            if (dist < 100) {
+              ctx.strokeStyle = "#58a6ff11";
+              ctx.lineWidth = 0.5;
+              ctx.beginPath();
+              ctx.moveTo(d.x, d.y);
+              ctx.lineTo(d2.x, d2.y);
+              ctx.stroke();
+            }
+          }
+        }
+
+        requestAnimationFrame(draw);
+      }
+
+      draw();
+
+      window.addEventListener("resize", () => {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      });
     </script>
   </body>
 </html>
